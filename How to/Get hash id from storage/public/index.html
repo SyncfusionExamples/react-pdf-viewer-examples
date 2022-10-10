@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Syncfusion React Sample</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="Syncfusion React UI Components" />
+    <meta name="author" content="Syncfusion" />
+    <!--Essential JS 2 PDF Viewer's global script-->
+    <link href="https://cdn.syncfusion.com/ej2/bootstrap5.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body class="bootstrap5">
+<button onclick="uniqueid()">
+unique id
+</button>
+    <div id='sample'>
+    <script>
+    //Method to get the Id for the PDF document.
+    function uniqueid(){
+    var viewer = document.getElementById('container').ej2_instances[0];
+    window.sessionStorage.getItem("hashId");
+    //Prints the id in the console window.
+    console.log(window.sessionStorage.getItem("hashId"));
+    }
+    </script>
+</body>
+</html>
