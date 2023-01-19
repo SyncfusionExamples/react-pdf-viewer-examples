@@ -9,14 +9,13 @@ export function App() {
       <PdfViewerComponent
         id="container"
         documentPath="PDF_Succinctly.pdf"
-        ajaxRequestSuccess={this.fireAjaxRequestSuccess}
         enableToolbar ={false}
         serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/pdfviewer"
         style={{ height: '640px' }}>
 
             {/* Inject the required services */}  
             <Inject services={[ Toolbar, Magnification, Navigation, Annotation, LinkAnnotation, BookmarkView, ThumbnailView,
-                                  Print, TextSelection, TextSearch, FormFields, FormDesigner ]}/>
+                                Print, TextSelection, TextSearch, FormFields, FormDesigner ]}/>
       </PdfViewerComponent>
     </div>
   </div>);
