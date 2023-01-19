@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createRoot } from 'react-dom/client';
+import * as ReactDOM from "react-dom/client";
 import { PdfViewerComponent, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, 
   ThumbnailView, Print,TextSelection, Annotation, TextSearch, FormFields, FormDesigner, Inject } from '@syncfusion/ej2-react-pdfviewer';
 export function App() {
@@ -20,5 +20,5 @@ export function App() {
     </div>
   </div>);
 }
-const root = createRoot(document.getElementById('sample'));
-root.render(<App />);          
+const root = ReactDOM.createRoot(document.getElementById('sample'));
+root.render(<App />);       
