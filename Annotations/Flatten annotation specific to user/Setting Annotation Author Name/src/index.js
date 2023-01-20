@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
+import './index.css';
 import {
   PdfViewerComponent, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView,
   ThumbnailView, Print, TextSelection, Annotation, TextSearch, FormFields, FormDesigner, Inject} from '@syncfusion/ej2-react-pdfviewer';
@@ -11,7 +12,7 @@ export function App() {
         id="container"
         documentPath="PDF_Succinctly.pdf"
         documentLoad={documentLoaded}
-        serviceUrl="https://localhost:44399/pdfviewer"
+        serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/pdfviewer" 
         style={{ height: '640px' }}>
 
         {/* Inject the required services */}
