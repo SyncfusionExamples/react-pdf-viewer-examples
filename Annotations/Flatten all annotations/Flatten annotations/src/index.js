@@ -10,7 +10,7 @@ export function App() {
       <PdfViewerComponent
         id="container"
         documentPath="PDF_Succinctly.pdf"
-        serviceUrl="https://localhost:44399/pdfviewer" 
+        serviceUrl="https://localhost:44309/pdfviewer" 
         style={{ height: '640px' }}>
 
         {/* Inject the required services */}
@@ -20,5 +20,18 @@ export function App() {
     </div>
   </div>);
 }
+// function lockAnnotation() {
+
+//   var viewer = document.getElementById("container").ej2_instances[0];
+
+//   for (var i = 0; i < viewer.annotationCollection.length; i++) {
+
+//     viewer.annotationCollection[i].annotationSettings.isLock = true;
+
+//     viewer.annotationModule.editAnnotation(viewer.annotationCollection[i]);
+
+//   }
+
+// }
 const root = ReactDOM.createRoot(document.getElementById('sample'));
 root.render(<App />);
