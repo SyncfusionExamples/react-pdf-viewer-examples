@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Syncfusion React Sample</title>
     <meta charset="utf-8" />
@@ -13,16 +14,15 @@
 </head>
 
 <body class="bootstrap5">
-<button onclick="exportAnnotation()">
-export annotation
-</button>
+    <button onclick="exportAnnotation()">export annotation</button>
     <div id='sample'>
-    <script>
-    //Method to export annotation.    
-    function exportAnnotation(){
-    var viewer = document.getElementById('container').ej2_instances[0];
-    viewer.exportAnnotation();
-    }
+        <script>
+        //Method to export annotation.    
+        function exportAnnotation() {
+            var viewer = document.getElementById('container').ej2_instances[0];
+            viewer.exportAnnotation();
+        }
     </script>
 </body>
+
 </html>
