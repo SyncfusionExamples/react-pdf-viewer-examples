@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.4.33205.214
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PDFViewerWebService", "PDFViewerWebService.csproj", "{1FB26035-6311-461B-A923-AAE842E63CFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFViewerWebService", "PDFViewerWebService\PDFViewerWebService.csproj", "{640AB956-E150-4410-8D19-7770661C3592}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1FB26035-6311-461B-A923-AAE842E63CFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1FB26035-6311-461B-A923-AAE842E63CFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1FB26035-6311-461B-A923-AAE842E63CFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1FB26035-6311-461B-A923-AAE842E63CFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{640AB956-E150-4410-8D19-7770661C3592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{640AB956-E150-4410-8D19-7770661C3592}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{640AB956-E150-4410-8D19-7770661C3592}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{640AB956-E150-4410-8D19-7770661C3592}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {D92ED832-F816-4782-9220-B899342777E8}
+		SolutionGuid = {F26A7B73-6059-4DEA-A1DD-06B69096E3EA}
 	EndGlobalSection
 EndGlobal

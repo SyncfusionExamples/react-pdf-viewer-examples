@@ -1,14 +1,19 @@
-﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 using Syncfusion.EJ2.PdfViewer;
+using Syncfusion.OCRProcessor;
+using Syncfusion.Pdf;
+using Syncfusion.Pdf.Interactive;
+using Syncfusion.Pdf.Parsing;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
-using Syncfusion.Pdf.Parsing;
+using System.Threading;
 
-namespace PDFViewerWebService.Controllers
+namespace PdfViewerService2.Controllers
 {
     [Route("[controller]")]
     [ApiController]
@@ -17,7 +22,6 @@ namespace PDFViewerWebService.Controllers
         private IHostingEnvironment _hostingEnvironment;
         //Initialize the memory cache object   
         public IMemoryCache _cache;
-
         public PdfViewerController(IHostingEnvironment hostingEnvironment, IMemoryCache cache)
         {
             _hostingEnvironment = hostingEnvironment;
@@ -26,17 +30,17 @@ namespace PDFViewerWebService.Controllers
         }
 
         [HttpPost("Load")]
-/*        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]*/
+        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]
         [Route("[controller]/Load")]
-        //Post action for loading the PDF documents 
+        //Post action for Loading the PDF documents   
         public IActionResult Load([FromBody] Dictionary<string, string> jsonObject)
         {
+            Thread.Sleep(5000);
             Console.WriteLine("Load called");
-            //Initialize the PDF viewer object with memory cache object
-            PdfRenderer pdfviewer = new PdfRenderer(_cache);
+            //Initialize the PDF viewer object with memory cache object
+            PdfRenderer pdfviewer = new PdfRenderer(_cache);
             MemoryStream stream = new MemoryStream();
             object jsonResult = new object();
-
             if (jsonObject != null && jsonObject.ContainsKey("document"))
             {
                 if (bool.Parse(jsonObject["isFileName"]))
@@ -44,7 +48,9 @@ namespace PDFViewerWebService.Controllers
                     string documentPath = GetDocumentPath(jsonObject["document"]);
                     if (!string.IsNullOrEmpty(documentPath))
                     {
+                        //Returns a byte array containing the contents of the file.
                         byte[] bytes = System.IO.File.ReadAllBytes(documentPath);
+                        //Initialize a memory stream class based on the specified byte array.
                         stream = new MemoryStream(bytes);
                     }
                     else
@@ -54,83 +60,94 @@ namespace PDFViewerWebService.Controllers
                 }
                 else
                 {
+                    //Converts the specified string, which encodes binary data as base-64.
                     byte[] bytes = Convert.FromBase64String(jsonObject["document"]);
                     stream = new MemoryStream(bytes);
                 }
             }
 
-            jsonResult = pdfviewer.Load(stream, jsonObject);
+            PdfLoadedDocument loadedDocument = new PdfLoadedDocument(stream);
+            for(var i = 0; i < loadedDocument.PageCount; i++)
+            {
+                for(var j = 0; j < loadedDocument.Pages[i].Annotations.Count; j++)
+                {
+                    if(loadedDocument.Pages[i].Annotations[j].Author != "syncfusion")
+                    {
+                        //Sets the boolean flag to flatten the annotations.
+                        loadedDocument.Pages[i].Annotations[j].Flatten = true;
+                        if (loadedDocument.Form != null)
+                        {
+                            //Flatten a form field by removing the existing form field and replacing it with graphical objects that would resemble the form field and cannot be edited. 
+                            loadedDocument.Form.Flatten = true;
+                        }
+                    }
+                }
+                
+
+            }
+           
+           
+
+            MemoryStream str = new MemoryStream();
+            loadedDocument.Save(str);
+            loadedDocument.Close(true);
+            jsonResult = pdfviewer.Load(str, jsonObject);
             return Content(JsonConvert.SerializeObject(jsonResult));
         }
 
         [AcceptVerbs("Post")]
         [HttpPost("Bookmarks")]
-/*        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]*/
+        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]
         [Route("[controller]/Bookmarks")]
         //Post action for processing the bookmarks from the PDF documents
         public IActionResult Bookmarks([FromBody] Dictionary<string, string> jsonObject)
         {
-            //Initialize the PDF Viewer object with memory cache object
-            PdfRenderer pdfviewer = new PdfRenderer(_cache);
+            //Initialize the PDF Viewer object with memory cache object
+            PdfRenderer pdfviewer = new PdfRenderer(_cache);
             var jsonResult = pdfviewer.GetBookmarks(jsonObject);
             return Content(JsonConvert.SerializeObject(jsonResult));
         }
 
         [AcceptVerbs("Post")]
         [HttpPost("RenderPdfPages")]
-/*        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]*/
+        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]
         [Route("[controller]/RenderPdfPages")]
         //Post action for processing the PDF documents  
         public IActionResult RenderPdfPages([FromBody] Dictionary<string, string> jsonObject)
         {
-            //Initialize the PDF Viewer object with memory cache object
-            PdfRenderer pdfviewer = new PdfRenderer(_cache);
+            //Initialize the PDF Viewer object with memory cache object
+            PdfRenderer pdfviewer = new PdfRenderer(_cache);
             object jsonResult = pdfviewer.GetPage(jsonObject);
             return Content(JsonConvert.SerializeObject(jsonResult));
         }
 
         [AcceptVerbs("Post")]
-        [HttpPost("RenderPdfTexts")]
-/*        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]*/
-        [Route("[controller]/RenderPdfTexts")]
-        //Post action for processing the PDF texts  
-        public IActionResult RenderPdfTexts([FromBody] Dictionary<string, string> jsonObject)
-        {
-            //Initialize the PDF Viewer object with memory cache object
-            PdfRenderer pdfviewer = new PdfRenderer(_cache);
-            object jsonResult = pdfviewer.GetDocumentText(jsonObject);
-            return Content(JsonConvert.SerializeObject(jsonResult));
-        }
-
-        [AcceptVerbs("Post")]
         [HttpPost("RenderThumbnailImages")]
-/*        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]*/
+        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]
         [Route("[controller]/RenderThumbnailImages")]
-        //Post action for rendering the thumbnail images
+        //Post action for rendering the ThumbnailImages
         public IActionResult RenderThumbnailImages([FromBody] Dictionary<string, string> jsonObject)
         {
-            //Initialize the PDF Viewer object with memory cache object
-            PdfRenderer pdfviewer = new PdfRenderer(_cache);
+            //Initialize the PDF Viewer object with memory cache object
+            PdfRenderer pdfviewer = new PdfRenderer(_cache);
             object result = pdfviewer.GetThumbnailImages(jsonObject);
             return Content(JsonConvert.SerializeObject(result));
-        }
-
+        }      
         [AcceptVerbs("Post")]
         [HttpPost("RenderAnnotationComments")]
-/*        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]*/
+        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]
         [Route("[controller]/RenderAnnotationComments")]
         //Post action for rendering the annotations
         public IActionResult RenderAnnotationComments([FromBody] Dictionary<string, string> jsonObject)
         {
-            //Initialize the PDF Viewer object with memory cache object
-            PdfRenderer pdfviewer = new PdfRenderer(_cache);
+            //Initialize the PDF Viewer object with memory cache object
+            PdfRenderer pdfviewer = new PdfRenderer(_cache);
             object jsonResult = pdfviewer.GetAnnotationComments(jsonObject);
             return Content(JsonConvert.SerializeObject(jsonResult));
         }
-
         [AcceptVerbs("Post")]
         [HttpPost("ExportAnnotations")]
-/*        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]*/
+        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]
         [Route("[controller]/ExportAnnotations")]
         //Post action to export annotations
         public IActionResult ExportAnnotations([FromBody] Dictionary<string, string> jsonObject)
@@ -139,9 +156,10 @@ namespace PDFViewerWebService.Controllers
             string jsonResult = pdfviewer.ExportAnnotation(jsonObject);
             return Content(jsonResult);
         }
+
         [AcceptVerbs("Post")]
         [HttpPost("ImportAnnotations")]
-/*        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]*/
+        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]
         [Route("[controller]/ImportAnnotations")]
         //Post action to import annotations
         public IActionResult ImportAnnotations([FromBody] Dictionary<string, string> jsonObject)
@@ -189,11 +207,10 @@ namespace PDFViewerWebService.Controllers
         }
 
         [AcceptVerbs("Post")]
-        [HttpPost("Unload")]
-/*        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]*/
+        [HttpPost("ExportFormFields")]
+        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]
         [Route("[controller]/ExportFormFields")]
-        //Post action to export form fields
-        public IActionResult ExportFormFields([FromBody] Dictionary<string, string> jsonObject)
+        public IActionResult ExportFormFields([FromBody] Dictionary<string, string> jsonObject)
 
         {
             PdfRenderer pdfviewer = new PdfRenderer(_cache);
@@ -202,52 +219,42 @@ namespace PDFViewerWebService.Controllers
         }
 
         [AcceptVerbs("Post")]
-        [HttpPost("Unload")]
-/*        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]*/
+        [HttpPost("ImportFormFields")]
+        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]
         [Route("[controller]/ImportFormFields")]
-        //Post action to import form fields
-        public IActionResult ImportFormFields([FromBody] Dictionary<string, string> jsonObject)
+        public IActionResult ImportFormFields([FromBody] Dictionary<string, string> jsonObject)
         {
             PdfRenderer pdfviewer = new PdfRenderer(_cache);
-            jsonObject["data"] = GetDocumentPath(jsonObject["data"]);
             object jsonResult = pdfviewer.ImportFormFields(jsonObject);
             return Content(JsonConvert.SerializeObject(jsonResult));
         }
 
         [AcceptVerbs("Post")]
         [HttpPost("Unload")]
-/*        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]*/
+        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]
         [Route("[controller]/Unload")]
         //Post action for unloading and disposing the PDF document resources  
         public IActionResult Unload([FromBody] Dictionary<string, string> jsonObject)
         {
-            //Initialize the PDF Viewer object with memory cache object
-            PdfRenderer pdfviewer = new PdfRenderer(_cache);
+            //Initialize the PDF Viewer object with memory cache object
+            PdfRenderer pdfviewer = new PdfRenderer(_cache);
+            //Clear the cache objects while closing the PDF Viewer.
             pdfviewer.ClearCache(jsonObject);
             return this.Content("Document cache is cleared");
         }
 
 
         [HttpPost("Download")]
-/*        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]*/
+        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]
         [Route("[controller]/Download")]
         //Post action for downloading the PDF documents
         public IActionResult Download([FromBody] Dictionary<string, string> jsonObject)
         {
-            //Initialize the PDF Viewer object with memory cache object
-            PdfRenderer pdfviewer = new PdfRenderer(_cache);
+            //Initialize the PDF Viewer object with memory cache object
+            PdfRenderer pdfviewer = new PdfRenderer(_cache);
+            //Gets the PDF document as base64 string.
             string documentBase = pdfviewer.GetDocumentAsBase64(jsonObject);
-            byte[] bytes = Convert.FromBase64String(documentBase.Split("base64,")[1]);
-            PdfLoadedDocument loadedDocument = new PdfLoadedDocument(bytes);
-            loadedDocument.Pages[0].Annotations.Flatten = true;
-            MemoryStream stream = new MemoryStream();
-            // Saves the document as stream
-            loadedDocument.Save(stream);
-            loadedDocument.Close(true);
-            // Converts the PdfDocument object to byte form.
-            byte[] docBytes = stream.ToArray();
-            string docBase64 = "data:application/pdf;base64," + Convert.ToBase64String(docBytes);
-            return Content(docBase64);
+            return Content(documentBase);
         }
 
         [HttpPost("PrintImages")]
@@ -256,21 +263,66 @@ namespace PDFViewerWebService.Controllers
         //Post action for printing the PDF documents
         public IActionResult PrintImages([FromBody] Dictionary<string, string> jsonObject)
         {
-            //Initialize the PDF Viewer object with memory cache object
-            PdfRenderer pdfviewer = new PdfRenderer(_cache);
+            //Initialize the PDF Viewer object with memory cache object
+            PdfRenderer pdfviewer = new PdfRenderer(_cache);
+            //Gets the page as image.
             object pageImage = pdfviewer.GetPrintImage(jsonObject);
             return Content(JsonConvert.SerializeObject(pageImage));
         }
+        [HttpPost("RetriveText")]
+        [Microsoft.AspNetCore.Cors.EnableCors("MyPolicy")]
+        [Route("[controller]/RetriveText")]
+        public string RetriveText([FromBody] Dictionary<string, string> jsonObject)
+        {
+            PdfRenderer pdfviewer = new PdfRenderer(_cache);
+            //Gets the PDF document as base64 string.
+            string documentBase = pdfviewer.GetDocumentAsBase64(jsonObject);
+            string base64String = documentBase.Split(new string[] { "data:application/pdf;base64," }, StringSplitOptions.None)[1];
+            Dictionary<string, float> bounds = JsonConvert.DeserializeObject<Dictionary<string, float>>(jsonObject["bounds"].ToString());
+            var left = (bounds["left"]);
+            var top = (bounds["top"]);
+            var width = (bounds["width"]);
+            var height = (bounds["height"]);
+            Syncfusion.Drawing.RectangleF annotBounds = new Syncfusion.Drawing.RectangleF(left, top, width, height);
+            int pageIndex = (int.Parse(jsonObject["pageIndex"].ToString()));
+            string extractedText = PerformOCR(annotBounds, pageIndex, documentBase);
+            return extractedText;
+        }
+        public string PerformOCR(Syncfusion.Drawing.RectangleF bounds, int PageIndex, string documentBase)
+        {
+            string path = System.IO.Path.GetFullPath(@"Data\TesseractBinaries\Windows\");
+            string tessdata = System.IO.Path.GetFullPath(@"Data\Tessdata\");
+            using (OCRProcessor processor = new OCRProcessor(path))
+            {
+                PdfRenderer lDoc = new PdfRenderer();
+                var document = _hostingEnvironment.ContentRootPath;
 
-        //Returns the PDF document path
+                lDoc.Load(@"Data\PDF_Succinctly.pdf");
+                processor.Settings.Language = Languages.English;
+                int DPI = 300;
+                System.Drawing.Bitmap image = lDoc.ExportAsImage(PageIndex, DPI, DPI);
+                System.Drawing.RectangleF rect = new System.Drawing.RectangleF((float)((bounds.X * DPI) / 96), (float)((bounds.Y * DPI) / 96), (float)((bounds.Width * DPI) / 96), (float)((bounds.Height * DPI) / 96));
+                using (Bitmap clonedImage = image.Clone(rect, System.Drawing.Imaging.PixelFormat.Format32bppArgb))
+                {
+                    string OCR = processor.PerformOCR(clonedImage, tessdata);
+                    image.Dispose();
+                    return OCR;
+                }
+            }
+        }
+        
+
+        //Gets the path of the PDF document
         private string GetDocumentPath(string document)
         {
             string documentPath = string.Empty;
             if (!System.IO.File.Exists(document))
             {
+                //Sets the absolute path to the directory that contains the application content files.
                 var path = _hostingEnvironment.ContentRootPath;
-                if (System.IO.File.Exists(path + "/Data/" + document))
-                    documentPath = path + "/Data/" + document;
+                var pathToFile = path + Path.DirectorySeparatorChar.ToString() + "Data" + Path.DirectorySeparatorChar.ToString() + document;
+                if (System.IO.File.Exists(pathToFile))
+                    documentPath = pathToFile;
             }
             else
             {
@@ -279,8 +331,7 @@ namespace PDFViewerWebService.Controllers
             Console.WriteLine(documentPath);
             return documentPath;
         }
-
-        //GET api/values
+        // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {

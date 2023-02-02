@@ -12,7 +12,7 @@ export function App() {
         id="container"
         documentPath="PDF_Succinctly.pdf"
         documentLoad={documentLoaded}
-        serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/pdfviewer" 
+        serviceUrl="https://localhost:44309/pdfviewer" 
         style={{ height: '640px' }}>
 
         {/* Inject the required services */}
