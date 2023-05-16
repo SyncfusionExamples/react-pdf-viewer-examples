@@ -1,4 +1,4 @@
-import * as ReactDOM from 'react-dom/client';
+import * as ReactDOM from 'react-dom';
 import * as React from 'react';
 import './index.css';
 import { PdfViewerComponent, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView,
