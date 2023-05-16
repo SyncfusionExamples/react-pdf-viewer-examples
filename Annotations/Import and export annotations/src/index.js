@@ -11,7 +11,7 @@ export function App() {
         id="container"
         documentPath="PDF_Succinctly.pdf"
         documentLoad={documentLoad}
-        serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/pdfviewer"
+        serviceUrl="https://localhost:44309/pdfviewer"
         style={{ height: '640px' }}>
 
               {/* Inject the required services */}
@@ -116,3 +116,20 @@ export function App() {
   }
   const root = ReactDOM.createRoot(document.getElementById('sample'));
   root.render(<App />);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
