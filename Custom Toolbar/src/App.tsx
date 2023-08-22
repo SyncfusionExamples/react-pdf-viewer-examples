@@ -386,14 +386,14 @@ function App() {
   }
 
   function onDocumentLoaded() {
-    let pageCount = viewer.pageCount;
+    let pageCount : number = viewer.pageCount;
     let totalPageElement: HTMLInputElement = document.getElementById('totalPage') as HTMLInputElement;
     totalPageElement.textContent = 'of ' + pageCount;
 
     let inputElement: HTMLInputElement = document.getElementById('currentPage') as HTMLInputElement;
     inputElement.value = "1";
 
-    let fileName = viewer.fileName;
+    let fileName : string= viewer.fileName;
     let fileNameElement: HTMLInputElement = document.getElementById('documentFileName') as HTMLInputElement;
     fileNameElement.textContent = fileName;
   }
