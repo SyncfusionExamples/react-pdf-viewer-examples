@@ -13,7 +13,8 @@ render() {
             }}
             id="container"
             documentPath="PDF Succinctly.pdf"
-            serviceUrl="https://localhost:44399/pdfviewer"
+            //To set up the **server-backed PDF Viewer**, add the following 'serviceUrl'.
+            //serviceUrl="https://localhost:44399/pdfviewer"
             documentLoad={this.documentLoaded}
             style={{ height: '640px' }}
           >

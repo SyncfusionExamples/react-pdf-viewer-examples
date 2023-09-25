@@ -1,15 +1,8 @@
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { PdfViewerComponent, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, Annotation, TextSearch, FormFields, FormDesigner, Inject } from '@syncfusion/ej2-react-pdfviewer';
-let thumbnail = [];
+
 export class App extends React.Component {
-  //Event triggers on successful AJAX request
-  fireAjaxRequestSuccess(event) {
-    if (event.action === 'Load') {
-      thumbnail.push(event.data);      
-      console.log(thumbnail);
-    }
-  }
   render() {
     return (
       <div>
@@ -17,10 +10,10 @@ export class App extends React.Component {
           {/* Render the PDF Viewer */}
           <PdfViewerComponent
             id="container"
-            documentPath="PDF_Succinctly.pdf"
-            ajaxRequestSuccess={this.fireAjaxRequestSuccess}
+            documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf"
             enableToolbar ={false}
-            serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/pdfviewer"
+            //To set up the **server-backed PDF Viewer**, add the following 'serviceUrl'.
+            // serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/pdfviewer"
             style={{ height: '640px' } 
           }
           >

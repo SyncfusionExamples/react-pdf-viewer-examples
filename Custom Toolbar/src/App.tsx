@@ -329,9 +329,16 @@ function App() {
             </div>                   
         </div>
       </div>
-      <PdfViewerComponent ref={(scope : any) => { viewer = scope; }} serviceUrl='https://localhost:44347/pdfviewer' 
-      documentPath="PDF_Succinctly.pdf" style={{height:'640px'}}
-      enableToolbar={false} documentLoad={onDocumentLoaded} pageChange={onPageChanged}></PdfViewerComponent>  
+      <PdfViewerComponent 
+        ref={(scope : any) => { viewer = scope; }} 
+        //To set up the **server-backed PDF Viewer**, add the following 'serviceUrl'.
+        serviceUrl='https://localhost:44347/pdfviewer' 
+        documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf" 
+        style={{height:'640px'}}
+        enableToolbar={false} 
+        documentLoad={onDocumentLoaded} 
+        pageChange={onPageChanged}>
+      </PdfViewerComponent>  
 
       <input type='file' id="fileUpload" accept='.pdf' 
       style={{ 'display': 'block', 'visibility': 'hidden', 'width': '0', 'height': '0'}}
