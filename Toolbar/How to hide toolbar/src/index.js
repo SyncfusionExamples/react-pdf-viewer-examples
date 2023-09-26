@@ -13,7 +13,7 @@ export class App extends React.Component {
             documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf"
             enableToolbar ={false}
             //To set up the **server-backed PDF Viewer**, add the following 'serviceUrl'.
-            // serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/pdfviewer"
+            // serviceUrl="https://services.syncfusion.com/react/production/api/pdfviewer"
             style={{ height: '640px' } 
           }
           >
