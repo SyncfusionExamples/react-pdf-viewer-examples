@@ -10,8 +10,7 @@ render() {
         <PdfViewerComponent
             id="container"
             documentPath="PDF Succinctly.pdf"
-            //To set up the **server-backed PDF Viewer**, add the following 'serviceUrl'.
-            //serviceUrl="https://localhost:44399/pdfviewer"
+            serviceUrl="https://localhost:44399/pdfviewer"
             style={{ height: '640px' }}
           >
             {/*Inject required dependencies*/}
