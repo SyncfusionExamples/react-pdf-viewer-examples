@@ -8,8 +8,7 @@ return (<div>
         <PdfViewerComponent 
             id="container" 
             documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf" 
-            //To set up the **server-backed PDF Viewer**, add the following 'serviceUrl'.
-            // serviceUrl="https://services.syncfusion.com/react/production/api/pdfviewer" 
+            resourceUrl="https://cdn.syncfusion.com/ej2/23.1.43/dist/ej2-pdfviewer-lib"
             style={{ 'height': '640px' }}>
 
             <Inject services={[Toolbar, Magnification, Navigation, Annotation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, FormFields, FormDesigner]}/>
