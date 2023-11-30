@@ -35,8 +35,8 @@ function CustomToolbar() {
                 </div>
                 {/* Render the PDF Viewer */}
                 <PdfViewerComponent id="container" ref={(scope) => { viewer = scope; }} enableToolbar={false} enableNavigationToolbar={false} documentLoad={documentLoaded} pageChange={onPageChange} resourceUrl="https://cdn.syncfusion.com/ej2/23.1.43/dist/ej2-pdfviewer-lib" documentPath="https://cdn.syncfusion.com/content/pdf/hive-succinctly.pdf" style={{ 'display': 'block', 'height': '640px' }}>
-                    <Inject services={[Magnification, Navigation, LinkAnnotation, BookmarkView,
-            ThumbnailView, Print, TextSelection, TextSearch]}/>
+                    <Inject services={[ Magnification, Navigation, LinkAnnotation, BookmarkView,
+                                        ThumbnailView, Print, TextSelection, TextSearch]}/>
                 </PdfViewerComponent>
                 <input type="file" id="fileUpload" accept=".pdf" onChange={readFile.bind(this)} style={{ 'display': 'block', 'visibility': 'hidden', 'width': '0', 'height': '0' }}/>
                 <div className='e-pdf-toolbar' id="magnificationToolbarItems">
