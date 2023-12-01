@@ -84,6 +84,8 @@ function CustomToolbar() {
             case 'zoom_out':
                 viewer.magnification.zoomOut();
                 break;
+            default:
+                break;
         }
     }
     function documentLoaded() {
