@@ -1,9 +1,10 @@
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
+import './index.css';
 import  { PdfViewerComponent, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView,
          ThumbnailView, Print, TextSelection, Annotation, TextSearch, FormFields, FormDesigner, Inject} from '@syncfusion/ej2-react-pdfviewer';
 export function App() {
-  toolItem = { 
+  var toolItem = { 
     prefixIcon :'e-icons e-paste',
     id :'print',
     tooltipText : 'Custom toolbar item',
@@ -25,7 +26,7 @@ return (<div>
         <PdfViewerComponent 
             id="container" 
             documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf"
-            resourceUrl="https://cdn.syncfusion.com/ej2/23.1.43/dist/ej2-pdfviewer-lib"
+            resourceUrl="https://cdn.syncfusion.com/ej2/24.1.41/dist/ej2-pdfviewer-lib"
             toolbarSettings={{ showTooltip : true, toolbarItems: [toolItem, 'OpenOption', 'PageNavigationTool', 'MagnificationTool', 'PanTool', 'SelectionTool', 'SearchOption', 'PrintOption', 'DownloadOption', 'UndoRedoTool', 'AnnotationEditTool', 'FormDesignerEditTool', 'CommentTool', 'SubmitForm']}}
             toolbarClick={toolbarClick}
             style={{ 'height': '640px' }}>
