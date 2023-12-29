@@ -297,7 +297,7 @@ namespace PdfViewerService2.Controllers
                 PdfRenderer lDoc = new PdfRenderer();
                 var document = _hostingEnvironment.ContentRootPath;
 
-                lDoc.Load(@"Data\https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf");
+                lDoc.Load(@"Data\PDF_Succinctly.pdf");
                 processor.Settings.Language = Languages.English;
                 int DPI = 300;
                 System.Drawing.Bitmap image = lDoc.ExportAsImage(PageIndex, DPI, DPI);
