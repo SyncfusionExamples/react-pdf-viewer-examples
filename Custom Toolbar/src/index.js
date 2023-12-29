@@ -34,7 +34,7 @@ function CustomToolbar() {
                     </ToolbarComponent>
                 </div>
                 {/* Render the PDF Viewer */}
-                <PdfViewerComponent id="container" ref={(scope) => { viewer = scope; }} enableToolbar={false} enableNavigationToolbar={false} documentLoad={documentLoaded} pageChange={onPageChange} resourceUrl="https://cdn.syncfusion.com/ej2/23.1.43/dist/ej2-pdfviewer-lib" documentPath="https://cdn.syncfusion.com/content/pdf/hive-succinctly.pdf" style={{ 'display': 'block', 'height': '640px' }}>
+                <PdfViewerComponent id="container" ref={(scope) => { viewer = scope; }} enableToolbar={false} enableNavigationToolbar={false} documentLoad={documentLoaded} pageChange={onPageChange} resourceUrl="https://cdn.syncfusion.com/ej2/24.1.41/dist/ej2-pdfviewer-lib" documentPath="https://cdn.syncfusion.com/content/pdf/hive-succinctly.pdf" style={{ 'display': 'block', 'height': '640px' }}>
                     <Inject services={[ Magnification, Navigation, LinkAnnotation, BookmarkView,
                                         ThumbnailView, Print, TextSelection, TextSearch]}/>
                 </PdfViewerComponent>

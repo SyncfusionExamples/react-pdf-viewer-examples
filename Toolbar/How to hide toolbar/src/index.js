@@ -14,6 +14,7 @@ export class App extends React.Component {
             enableToolbar ={false}
             //To set up the **server-backed PDF Viewer**, add the following 'serviceUrl'.
             // serviceUrl="https://services.syncfusion.com/react/production/api/pdfviewer"
+            resourceUrl="https://cdn.syncfusion.com/ej2/24.1.41/dist/ej2-pdfviewer-lib"
             style={{ height: '640px' } 
           }
           >
