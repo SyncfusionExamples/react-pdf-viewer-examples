@@ -8,8 +8,8 @@ return (<div>
     <div className='control-section'>
         <PdfViewerComponent 
             id="container" 
-            // Replace PDF_Succinctly.pdf with the actual document name that you want to load
-            documentPath="PDF_Succinctly.pdf"
+            // Replace PDF_Succintly.pdf with the actual document name that you want to load
+            documentPath="PDF_Succintly.pdf"
             // Replace the "localhost:44396" with the actual URL of your server
             serviceUrl="https://localhost:44396/pdfviewer" 
             style={{ 'height': '640px' }}>
