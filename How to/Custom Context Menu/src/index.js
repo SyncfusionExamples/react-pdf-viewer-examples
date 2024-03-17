@@ -1,54 +1,59 @@
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
 import './index.css';
-import { PdfViewerComponent, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, Annotation, TextSearch, FormFields, FormDesigner, Inject } from '@syncfusion/ej2-react-pdfviewer';
+import { PdfViewerComponent, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, Annotation, TextSearch, FormFields, FormDesigner, PageOrganizer, Inject } from '@syncfusion/ej2-react-pdfviewer';
 import { CheckBoxComponent } from '@syncfusion/ej2-react-buttons';
 
 export function App() {
+    var viewer;
+    var enableObj;
+    var positionObj;
     let menuItems = [
         {
             text: 'Search In Google',
             id: 'search_in_google',
-            iconCss: 'e-icons e-de-ctnr-find'
+            iconCss: 'e-icon e-de-ctnr-find'
         },
         {
             text: 'Lock Annotation',
-            iconCss: 'e-icons e-lock',
+            iconCss: 'e-icon e-lock',
             id: 'lock_annotation'
         },
         {
             text: 'Unlock Annotation',
-            iconCss: 'e-icons e-unlock',
+            iconCss: 'e-icon e-unlock',
             id: 'unlock_annotation'
         },
         {
             text: 'Lock Form Fields',
-            iconCss: 'e-icons e-lock',
+            iconCss: 'e-icon e-lock',
             id: 'read_only_true'
         },
         {
             text: 'Unlock Form Fields',
-            iconCss: 'e-icons e-unlock',
+            iconCss: 'e-icon e-unlock',
             id: 'read_only_false'
         },
     ];
 return (<div>
-    <tr>
-        <td className='left-side-property'>Hide Default Context Menu</td>
-        <td>
-            <CheckBoxComponent ref={(scope) => { enableObj = scope; }} cssClass="multiline" id="hide-default-context-menu" change={contextmenuHelper}></CheckBoxComponent>
-        </td>
-    </tr>
-    <tr>
-        <td className='left-side-property'>Add Custom option at bottom</td>
-        <td>
-            <CheckBoxComponent ref={(scope) => { positionObj = scope; }} cssClass="multiline" id="show-custom-menu-bottom" change={contextmenuHelper}></CheckBoxComponent>
-        </td>
-    </tr>
+    <tbody>
+        <tr>
+            <td>Hide Default Context Menu</td>
+            <td>
+                <CheckBoxComponent ref={(scope) => { enableObj = scope; }} id="hide-default-context-menu" change={contextmenuHelper}></CheckBoxComponent>
+            </td>
+        </tr>
+        <tr>
+            <td>Add Custom option at bottom</td>
+            <td>
+                <CheckBoxComponent ref={(scope) => { positionObj = scope; }} id="show-custom-menu-bottom" change={contextmenuHelper}></CheckBoxComponent>
+            </td>
+        </tr>
+    </tbody>
     <div className='control-section'>
-        <PdfViewerComponent id="container" documentPath="PDF_Succinctly.pdf" serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/pdfviewer" documentLoad={documentLoad} customContextMenuSelect = {customContextMenuSelect} customContextMenuBeforeOpen = {customContextMenuBeforeOpen} style={{ 'height': '640px' }}>
-            <Inject services={[Toolbar, Magnification, Navigation, Annotation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, FormFields, FormDesigner]}/>
-        </PdfViewerComponent>
+    <PdfViewerComponent ref={(scope) => { viewer = scope; }} id="container" documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf" resourceUrl = "https://cdn.syncfusion.com/ej2/23.2.6/dist/ej2-pdfviewer-lib" documentLoad={documentLoad} customContextMenuSelect = {customContextMenuSelect} customContextMenuBeforeOpen = {customContextMenuBeforeOpen} style={{ 'height': '640px' }}>
+                <Inject services={[Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, FormDesigner, PageOrganizer]} />
+    </PdfViewerComponent>
     </div>
 </div>);
 
@@ -102,10 +107,10 @@ return (<div>
                     }
                 } else if ((args.ids[i] === "read_only_true" || args.ids[i] === "read_only_false") && viewer.selectedItems.formFields.length !== 0) {
                     var isReadOnlyOption = args.ids[i] === "read_only_true";
-                    for (var j = 0; j < viewer.selectedItems.formFields.length; j++) {
-                        var selectedFormFields = viewer.selectedItems.formFields[j];
+                    for (var k = 0; k < viewer.selectedItems.formFields.length; k++) {
+                        var selectedFormFields = viewer.selectedItems.formFields[k];
                         if (selectedFormFields) {
-                            var selectedFormField = viewer.selectedItems.formFields[j].isReadonly;
+                            var selectedFormField = viewer.selectedItems.formFields[k].isReadonly;
                             var displayMenu = (isReadOnlyOption && !selectedFormField) || (!isReadOnlyOption && selectedFormField);
                             search.style.display = displayMenu ? 'block' : 'none';
                         }
@@ -118,27 +123,24 @@ return (<div>
     }
 
     function lockAnnotations(args) {
-        var selectedAnnotations = viewer.selectedItems.annotations;
-        for (var i = 0; i < selectedAnnotations.length; i++) {
-            var annotation = selectedAnnotations[i];
-            if (annotation && annotation.annotationSettings) {
-                annotation.annotationSettings.isLock = true;
-                viewer.annotationModule.editAnnotation(annotation);
-                args.cancel = false;
+        for (var i = 0; i < viewer.annotationCollection.length; i++) {
+            if (viewer.annotationCollection[i].uniqueKey === viewer.selectedItems.annotations[0].id) {
+                viewer.annotationCollection[i].annotationSettings.isLock = true;
+                viewer.annotationCollection[i].isCommentLock = true;
+                viewer.annotation.editAnnotation(viewer.annotationCollection[i]);
             }
+            args.cancel = false;
         }
     }
 
-
     function unlockAnnotations(args) {
-        var selectedAnnotations = viewer.selectedItems.annotations;
-        for (var i = 0; i < selectedAnnotations.length; i++) {
-            var annotation = selectedAnnotations[i];
-            if (annotation && annotation.annotationSettings) {
-                annotation.annotationSettings.isLock = false;
-                viewer.annotationModule.editAnnotation(annotation);
-                args.cancel = false;
+        for (var i = 0; i < viewer.annotationCollection.length; i++) {
+            if (viewer.annotationCollection[i].uniqueKey === viewer.selectedItems.annotations[0].id) {
+                viewer.annotationCollection[i].annotationSettings.isLock = false;
+                viewer.annotationCollection[i].isCommentLock = false;
+                viewer.annotation.editAnnotation(viewer.annotationCollection[i]);
             }
+            args.cancel = false;
         }
     }
 
