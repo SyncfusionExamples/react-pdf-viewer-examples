@@ -12,7 +12,7 @@ export function App() {
         {
             text: 'Search In Google',
             id: 'search_in_google',
-            iconCss: 'e-icon e-de-ctnr-find'
+            iconCss: 'e-icon e-search'
         },
         {
             text: 'Lock Annotation',
