@@ -9,7 +9,7 @@ function App() {
   function downloadStart(args){
     // Your custom logic here
     args.cancel = true; // Prevent download action
-};
+  };
   return (<div>
     <div className='control-section'>
      {/* Render the PDF Viewer */}
