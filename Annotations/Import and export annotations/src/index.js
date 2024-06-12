@@ -103,9 +103,11 @@ export class App extends React.Component {
               {/* Render the PDF Viewer */}
               <PdfViewerComponent
                 id="container"
-                documentPath="PDF_Succinctly.pdf"
+                documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf"
                 documentLoad={this.documentLoad}
-                serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/pdfviewer"
+                //To set up the **server-backed PDF Viewer**, add the following 'serviceUrl'.
+                //serviceUrl="https://services.syncfusion.com/react/production/api/pdfviewer"
+                resourceUrl="https://cdn.syncfusion.com/ej2/24.1.41/dist/ej2-pdfviewer-lib"
                 style={{ height: '640px' }}
               >
                 {/* Inject the required services */}

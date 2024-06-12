@@ -5,7 +5,12 @@ import { PdfViewerComponent, Toolbar, Magnification, Navigation, LinkAnnotation,
 export function App() {
 return (<div>
     <div className='control-section'>
-        <PdfViewerComponent id="container" documentPath="PDF_Succinctly.pdf" serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/pdfviewer" style={{ 'height': '640px' }}>
+        <PdfViewerComponent 
+            id="container" 
+            documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf" 
+            resourceUrl="https://cdn.syncfusion.com/ej2/24.1.41/dist/ej2-pdfviewer-lib"
+            style={{ 'height': '640px' }}>
+
             <Inject services={[Toolbar, Magnification, Navigation, Annotation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, FormFields, FormDesigner]}/>
         </PdfViewerComponent>
     </div>
