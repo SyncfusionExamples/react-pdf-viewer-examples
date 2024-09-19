@@ -3,7 +3,7 @@ import * as React from 'react';
 import './index.css';
 import { PdfViewerComponent, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, Annotation, TextSearch, FormFields, FormDesigner, PageOrganizer, Inject, DisplayMode } from '@syncfusion/ej2-react-pdfviewer';
 export function App() {
-  function addAnnotation() {
+  function addAnnotations() {
     var viewer = document.getElementById('container').ej2_instances[0];
     viewer.annotation.addAnnotation("HandWrittenSignature", {
       offset: { x: 220, y: 180 },
@@ -45,7 +45,7 @@ export function App() {
   }
   return (<div>
     <div className='control-section'>
-      <button onClick={addAnnotation}>Add Handwritten Signature programatically</button>
+      <button onClick={addAnnotations}>Add Handwritten Signature programatically</button>
       <PdfViewerComponent id="container" documentPath="PDF_Succinctly.pdf" serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/pdfviewer" style={{ 'height': '640px' }}>
         <Inject services={[Toolbar, Magnification, Navigation, Annotation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, FormFields, FormDesigner, PageOrganizer]} />
       </PdfViewerComponent>
