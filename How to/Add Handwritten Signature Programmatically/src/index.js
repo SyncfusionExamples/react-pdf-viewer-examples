@@ -45,7 +45,7 @@ export function App() {
   }
   return (<div>
     <div className='control-section'>
-      <button onClick={addAnnotations}>Add Handwritten signature programmatically</button>
+      <button style={{ marginTop: '60px' }} onClick={addAnnotations} >Add Handwritten signature programmatically</button>
       <PdfViewerComponent id="container" documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf"  resourceUrl="https://cdn.syncfusion.com/ej2/27.1.48/dist/ej2-pdfviewer-lib" style={{ 'height': '640px' }}>
         <Inject services={[Toolbar, Magnification, Navigation, Annotation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, FormFields, FormDesigner, PageOrganizer]} />
       </PdfViewerComponent>
