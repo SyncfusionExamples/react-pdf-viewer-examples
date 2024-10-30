@@ -22,6 +22,7 @@ class App extends React.Component {
         this.viewerRef = React.createRef();
     }
 
+    // Event for AJAX request success
     handleAjaxRequestSuccess = (args) => {
         if (args.action === 'Load') {
             const objLength = Object.keys(args.data.pageSizes).length;
@@ -32,10 +33,12 @@ class App extends React.Component {
         }
     };
 
+    // Event for export success
     handleExportSuccess = (args) => {
         console.log(args.exportData);
         const blobURL = args.exportData;
 
+        // Converting the exported blob into object
         this.convertBlobURLToObject(blobURL)
             .then((objectData) => {
                 console.log(objectData);
@@ -43,9 +46,13 @@ class App extends React.Component {
                 shapeAnnotationData.forEach((data) => {
                     if (data && data.rect && parseInt(data.rect.width)) {
                         const pageHeight = this.pageSizes[parseInt(data.page)].Height;
-
+                        
+                        // Converting PDF Library values into PDF Viewer values.
                         const rect = {
                             x: (parseInt(data.rect.x) * 96) / 72,
+
+                             // Converting pageHeight from pixels(PDF Viewer) to points(PDF Library) for accurate positioning
+                            // The conversion factor of 72/96 is used to change pixel values to points
                             y: (parseInt(pageHeight) * 72 / 96 - parseInt(data.rect.height)) * 96 / 72,
                             width: (parseInt(data.rect.width) - parseInt(data.rect.x)) * 96 / 72,
                             height: (parseInt(data.rect.height) - parseInt(data.rect.y)) * 96 / 72,
@@ -77,6 +84,7 @@ class App extends React.Component {
             });
     };
 
+    // Function to convert Blob URL to object
     convertBlobURLToObject(blobURL) {
         return fetch(blobURL)
             .then((response) => response.blob())
