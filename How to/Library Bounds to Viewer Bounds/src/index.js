@@ -94,7 +94,6 @@ class App extends React.Component {
                         documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf"
                         serviceUrl="https://services.syncfusion.com/js/production/api/pdfviewer"
                         style={{ height: '640px' }}
-                        ajaxRequestSuccess={this.handleAjaxRequestSuccess}
                         exportSuccess={this.handleExportSuccess}
                     >
                         <Inject services={[
