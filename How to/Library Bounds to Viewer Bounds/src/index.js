@@ -18,20 +18,8 @@ import {
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.pageSizes = [];
         this.viewerRef = React.createRef();
     }
-
-    // Event for AJAX request success
-    handleAjaxRequestSuccess = (args) => {
-        if (args.action === 'Load') {
-            const objLength = Object.keys(args.data.pageSizes).length;
-            for (let x = 0; x < objLength; x++) {
-                const pageSize = args.data.pageSizes[x];
-                this.pageSizes.push(pageSize);
-            }
-        }
-    };
 
     // Event for export success
     handleExportSuccess = (args) => {
@@ -43,38 +31,34 @@ class App extends React.Component {
             .then((objectData) => {
                 console.log(objectData);
                 const shapeAnnotationData = objectData['pdfAnnotation'][0]['shapeAnnotation'];
+                let rect = null;
                 shapeAnnotationData.forEach((data) => {
                     if (data && data.rect && parseInt(data.rect.width)) {
-                        const pageHeight = this.pageSizes[parseInt(data.page)].Height;
-                        
+                        const pageHeight = this.viewerRef.current.getPageInfo(parseInt(data.page)).height;
                         // Converting PDF Library values into PDF Viewer values.
-                        const rect = {
+                        rect = {
                             x: (parseInt(data.rect.x) * 96) / 72,
-
-                             // Converting pageHeight from pixels(PDF Viewer) to points(PDF Library) for accurate positioning
-                            // The conversion factor of 72/96 is used to change pixel values to points
-                            y: (parseInt(pageHeight) * 72 / 96 - parseInt(data.rect.height)) * 96 / 72,
+                            y: (parseInt(pageHeight) - parseInt(data.rect.height)) * 96 / 72,
                             width: (parseInt(data.rect.width) - parseInt(data.rect.x)) * 96 / 72,
                             height: (parseInt(data.rect.height) - parseInt(data.rect.y)) * 96 / 72,
                         };
-                        console.log(data.name, rect, '-------------------------');
-                    }
-                    if ((data.type === 'Line' || data.type === 'Arrow') && data.start && data.end) {
-                        const [startX, startY] = data.start.split(',').map(Number);
-                        const [endX, endY] = data.end.split(',').map(Number);
+                        if ((data.type === 'Line' || data.type === 'Arrow') && data.start && data.end) {
+                            const [startX, startY] = data.start.split(',').map(Number);
+                            const [endX, endY] = data.end.split(',').map(Number);
 
-                        const pageHeight = this.pageSizes[parseInt(data.page)].Height;
-                        const pdfStartX = (startX * 96) / 72;
-                        const pdfStartY = (parseInt(pageHeight) * 72 / 96 - startY) * 96 / 72;
-                        const pdfEndX = (endX * 96) / 72;
-                        const pdfEndY = (parseInt(pageHeight) * 72 / 96 - endY) * 96 / 72;
+                            const pageHeight = this.viewerRef.current.getPageInfo(parseInt(data.page)).height;
+                            const pdfStartX = (startX * 96) / 72;
+                            const pdfStartY = (parseInt(pageHeight) - startY) * 96 / 72;
+                            const pdfEndX = (endX * 96) / 72;
+                            const pdfEndY = (parseInt(pageHeight) - endY) * 96 / 72;
 
-                        const rect = {
-                            x: Math.min(pdfStartX, pdfEndX),
-                            y: Math.min(pdfStartY, pdfEndY),
-                            width: Math.abs(pdfEndX - pdfStartX),
-                            height: Math.abs(pdfEndY - pdfStartY),
-                        };
+                            rect = {
+                                x: Math.min(pdfStartX, pdfEndX),
+                                y: Math.min(pdfStartY, pdfEndY),
+                                width: Math.abs(pdfEndX - pdfStartX),
+                                height: Math.abs(pdfEndY - pdfStartY),
+                            };
+                        }
                         console.log(data.name, rect, '-------------------------');
                     }
                 });
