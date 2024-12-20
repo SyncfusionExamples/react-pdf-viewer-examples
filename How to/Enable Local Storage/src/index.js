@@ -7,8 +7,8 @@ export function App() {
     <div className='control-section'>
       <PdfViewerComponent 
         id="container" 
-        documentPath="PDF_Succinctly.pdf"
-        serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/pdfviewer" 
+        documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf"
+        resourceUrl="https://cdn.syncfusion.com/ej2/28.1.33/dist/ej2-pdfviewer-lib" 
         style={{ 'height': '680px' }} 
         // Enable or disable pinch zoom.
         enableLocalStorage = "true"
