@@ -1,0 +1,84 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.control-container {
+  /*  display: flex;
+    justify-content: space-between;*/
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-label {
+  width: 50%;
+}
+
+.color-label {
+  width: 20%;
+}
+
+.user-label-container {
+  display: flex;
+  width: 50%;
+}
+
+.color-label-container {
+  display: flex;
+  padding-left: 20px;
+  width: 30%;
+}
+
+.userContainerRow {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.viewerContainerRow {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.column {
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.userContainer {
+  width: 60%;
+  display: flex;
+}
+
+.viewerContainer {
+  width: 100%;
+}
+
+.finishSignBtn {
+  width: 11%;
+}
+
+@import '../node_modules/@syncfusion/ej2-base/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-buttons/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-navigations/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css';
+@import "../node_modules/@syncfusion/ej2-pdfviewer/styles/material.css";
