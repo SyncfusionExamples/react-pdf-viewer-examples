@@ -15,7 +15,7 @@
     <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="23.2.7" />
     <PackageReference Include="Syncfusion.EJ2.PdfViewer.AspNet.Core" Version="23.2.7" />
 	<PackageReference Include="Syncfusion.Pdf.Imaging.Net.Core" Version="23.2.7" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.31.0" />
     <PackageReference Include="Unity" Version="5.11.10" />
   </ItemGroup>
