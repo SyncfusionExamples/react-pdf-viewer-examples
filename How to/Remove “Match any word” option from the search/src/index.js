@@ -25,8 +25,8 @@ return (<div>
     <div className='control-section'>
         <PdfViewerComponent 
             id="container" 
-            documentPath="PDF_Succinctly.pdf" 
-            serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/pdfviewer" 
+            documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf"
+            resourceUrl="https://cdn.syncfusion.com/ej2/23.2.6/dist/ej2-pdfviewer-lib" 
             documentLoad = {documentLoaded} 
             style={{ 'height': '640px' }}>
 
