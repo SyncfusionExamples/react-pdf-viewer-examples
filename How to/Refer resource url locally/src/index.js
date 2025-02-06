@@ -7,8 +7,8 @@ return (<div>
     <div className='control-section'>
         <PdfViewerComponent 
             id="container" 
-            documentPath= {window.location.origin + "/assest/pdfsuccinctly.pdf"} 
-            resourceUrl = {window.location.origin + "/assest/ej2-pdfviewer-lib"} 
+            documentPath= {window.location.origin + "/assets/pdfsuccinctly.pdf"} 
+            resourceUrl = {window.location.origin + "/assets/ej2-pdfviewer-lib"} 
             style={{ 'height': '640px' }}>
 
             <Inject services={[Toolbar, Magnification, Navigation, Annotation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, FormFields, FormDesigner, PageOrganizer]}/>
