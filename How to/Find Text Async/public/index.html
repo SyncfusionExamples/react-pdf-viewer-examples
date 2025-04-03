@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Syncfusion React PDF Viewer</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Essential JS 2 for React Components" />
+<meta name="author" content="Syncfusion" /> 
+</head>
+<body>
+    <div style="margin-top: 50px;"></div>
+    <button onclick="findText()">findText</button>
+    <button onclick="findTexts()">findTexts</button>
+    <div id='sample'>
+        <div id='loader'>Loading....</div>
+    </div>
+</body>
+<script>
+    function findText(){              
+      //Search for a single string ('pdf') with a case-insensitive search across all pages
+      const viewer = document.getElementById('container').ej2_instances[0];
+      viewer.textSearchModule.findTextAsync('pdf', false).then(res =>{
+          console.log(res);
+      });
+    }
+    function findTexts(){                                                                                                              
+      //Search for multiple strings (['pdf', 'the']) with a case-insensitive search across all pages
+      const viewer = document.getElementById('container').ej2_instances[0];
+      viewer.textSearchModule.findTextAsync(['pdf', 'the'], false).then(res =>{
+          console.log(res);
+      });
+    }
+ </script>
+</html>

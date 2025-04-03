@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Syncfusion React PDF Viewer</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Essential JS 2 for React Components" />
+<meta name="author" content="Syncfusion" /> 
+</head>
+<body>
+    <div style="margin-top: 50px;"></div>
+    <button onclick="extrctText()">extrctText</button>
+    <button onclick="extrctsText()">extrctsText</button>
+    <div id='sample'>
+        <div id='loader'>Loading....</div>
+    </div>
+</body>
+<script>
+    // Function to extract text from a specific page (page 1)
+    function extrctText(){ 
+      var viewer = document.getElementById('container').ej2_instances[0];                                                                                                        
+      viewer.extractText(1, 'TextOnly').then((val) => {
+        console.log('Extracted Text from Page 1:'); 
+        console.log(val);
+      });
+    }
+    // Function to extract text from a range of pages (pages 0 to 2)
+    function extrctsText(){              
+      var viewer = document.getElementById('container').ej2_instances[0];                                                                                                       
+      viewer.extractText(0, 2, 'TextOnly').then((val) => {
+        console.log('Extracted Text from Pages 0 to 2:');
+        console.log(val);
+      });
+    }
+ </script>
+</html>
