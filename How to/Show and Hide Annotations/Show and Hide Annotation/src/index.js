@@ -1,71 +1,64 @@
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
 import './index.css';
-import { PdfViewerComponent, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, Annotation, TextSearch, FormFields, FormDesigner, Inject } from '@syncfusion/ej2-react-pdfviewer';
+import { PdfViewerComponent, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, Annotation, TextSearch, FormFields, FormDesigner, PageOrganizer, Inject } from '@syncfusion/ej2-react-pdfviewer';
 
-export function App() {
-  const viewerRef = React.useRef(null);
-  const [annotationsVisible, setAnnotationsVisible] = React.useState(true);
-  const [exportObject, setExportObject] = React.useState(null);
+export class App extends React.Component {
+  constructor() {
+    super();
+    this.pdfViewer = React.createRef();
+    this.state = {
+      exportObject: null
+    };
+  }
   
-  const toggleAnnotations = () => {
-    if (!viewerRef.current) return;
-    
-    const viewer = viewerRef.current;
-    
-    if (annotationsVisible) {
-      // Hide annotations by exporting and deleting them
-      viewer.exportAnnotationsAsObject().then((value) => {
-        setExportObject(value);
-        
-        const count = viewer.annotationCollection.length;
-        for (let i = 0; i < count; i++) {
-          // Always delete the first item as the collection shrinks
-          viewer.annotationModule.deleteAnnotationById(viewer.annotationCollection[0].annotationId);
-        }
-        
-        setAnnotationsVisible(false);
+  hideAnnotations = () => {
+    if (this.pdfViewer.current) {
+      this.pdfViewer.current.exportAnnotationsAsObject().then((value) => {
+        this.setState({ exportObject: value });
+        this.pdfViewer.current.deleteAnnotations();
       });
-    } else {
-      // Restore annotations
-      if (exportObject) {
-        let exportAnnotObject= JSON.parse(exportObject);
-        viewer.importAnnotation(exportAnnotObject);
-      }
-      
-      setAnnotationsVisible(true);
     }
-  };
+  }
 
-  return (
-    <div>
-      <div className='control-section'>
-        <button 
-          id="toggleBtn" 
-          onClick={toggleAnnotations}
-        >
-          {annotationsVisible ? 'Hide Annotation' : 'Show Annotation'}
-        </button>
+  showAnnotations = () => {
+    if (this.pdfViewer.current && this.state.exportObject) {
+      this.pdfViewer.current.importAnnotation(JSON.parse(this.state.exportObject));
+    }
+  }
+
+  render() {
+    return (
+      <div id="app">
+        <div style={{ marginBottom: '10px' }}>
+          <button 
+            id="hideBtn" 
+            onClick={this.hideAnnotations}
+            style={{ marginRight: '10px' }}
+          >
+            Hide Annotations
+          </button>
+          <button 
+            id="unhideBtn" 
+            onClick={this.showAnnotations}
+          >
+            Show Annotations
+          </button>
+        </div>
         
         <PdfViewerComponent 
-          id="container" 
-          ref={viewerRef}
-          serviceUrl='https://localhost:44309/pdfviewer'
-          documentPath='Annotations.pdf'
+          id="pdfViewer" 
+          ref={this.pdfViewer}
+          resourceUrl="https://cdn.syncfusion.com/ej2/30.1.37/dist/ej2-pdfviewer-lib"
+          documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf"
           style={{ 'height': '680px' }}
-          documentLoad={documentLoaded}
         >
           <Inject services={[Toolbar, Magnification, Navigation, Annotation, LinkAnnotation, BookmarkView, ThumbnailView,
-            Print, TextSelection, TextSearch, FormFields, FormDesigner]} />
+            Print, TextSelection, TextSearch, FormFields, FormDesigner, PageOrganizer]} />
         </PdfViewerComponent>
       </div>
-    </div>
-  );
-}
-
-function documentLoaded(args) {
-  // You can perform actions after the document is loaded here
-  console.log("Document loaded successfully");
+    );
+  }
 }
 
 const root = ReactDOM.createRoot(document.getElementById('sample'));
