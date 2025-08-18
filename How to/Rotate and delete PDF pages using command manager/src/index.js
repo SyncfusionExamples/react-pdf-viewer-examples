@@ -25,6 +25,7 @@ import { PdfDocument } from '@syncfusion/ej2-pdf';
 function App() {
   const viewerRef = React.useRef(null);
 
+  // Handle keyboard shortcuts (Alt+R: rotate right, Alt+L: rotate left, Alt+D: delete)
   function keyboardCustomCommands(args) {
     if (args.keyboardCommand.name === 'rotateCurrentPageRight') {
       rotate(45);
@@ -35,6 +36,7 @@ function App() {
     }
   }
 
+  // Rotate current page by specified degrees
   function rotate(degree) {
     viewerRef.current.saveAsBlob().then((value) => {
       const reader = new FileReader();
@@ -62,6 +64,7 @@ function App() {
     });
   }
 
+  // Delete the current page from PDF
   function deleteCurrentPage() {
     viewerRef.current.saveAsBlob().then((value) => {
       const reader = new FileReader();
@@ -97,6 +100,7 @@ function App() {
           documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf"
           resourceUrl="https://cdn.syncfusion.com/ej2/30.1.37/dist/ej2-pdfviewer-lib"
           style={{ height: '640px' }}
+          // Configure keyboard shortcuts and other props
           commandManager={{
             keyboardCommand: [
               {
@@ -147,5 +151,6 @@ function App() {
   );
 }
 
+// Render the App
 const root = createRoot(document.getElementById('sample'));
 root.render(<App />);
