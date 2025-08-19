@@ -21,8 +21,8 @@ export function App() {
 
 //function to handle the extractTextCompleted event
 function extractTextCompleted(args) {
-    //console.log(args.documentTextCollection);
      var viewer = document.getElementById('container').ej2_instances[0];
+     //Text search for a specific text in the PDF document
     var searchText =
       'The authors and copyright holders provide absolutely no warranty for any information provided. The authors and copyright holders shall not be liable for any claim, damages, or any other liability arising from, out of, or in connection with the information in this book.';
     const searchResults = viewer.textSearchModule.findText(searchText, false);
