@@ -1,0 +1,38 @@
+{
+  "name": "bdaqbgtb--run",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "@syncfusion/ej2-base": "31.1.17",
+    "@syncfusion/ej2-pdfviewer": "31.1.18",
+    "@syncfusion/ej2-react-base": "31.1.17",
+    "@syncfusion/ej2-react-pdfviewer": "31.1.18",
+    "@syncfusion/ej2-navigations": "31.1.18",
+    "@syncfusion/ej2-react-navigations": "31.1.18",
+    "@syncfusion/ej2-buttons": "31.1.17",
+    "@syncfusion/ej2-react-buttons": "31.1.17"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "react-scripts": "latest"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
