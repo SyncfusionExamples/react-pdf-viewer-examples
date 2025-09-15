@@ -9,9 +9,6 @@ import { PdfViewerComponent, Magnification, Navigation, LinkAnnotation, Bookmark
 // Import navigation components for toolbar and menu
 import { ToolbarComponent, ItemsDirective, ItemDirective, MenuComponent } from '@syncfusion/ej2-react-navigations';
 
-// Import switch component for UI controls
-import { SwitchComponent } from '@syncfusion/ej2-react-buttons';
-
 
 // CustomToolbar component for implementing a custom toolbar in the PDF viewer
 function CustomToolbar() {
@@ -215,15 +212,6 @@ function CustomToolbar() {
     // Main component render method
     return (<div>
     <div className='control-section'>
-      {/* Viewer mode selection container */}
-      <div className="flex-container">
-        <label htmlFor="checked" className="switchLabel"> Standalone PDF Viewer </label>
-        <div className="e-message render-mode-info">
-          <span className="e-msg-icon render-mode-info-icon" title="Turn OFF to render the PDF Viewer as server-backed"></span>
-        </div>
-        {/* Switch component for toggling between standalone and server-backed modes */}
-        <SwitchComponent cssClass="buttonSwitch" id="checked" change={change} checked={true}></SwitchComponent>
-      </div>
       <div>
         {/* Main PDF viewer toolbar */}
         <div className='e-pdf-toolbar'>
@@ -433,16 +421,6 @@ function CustomToolbar() {
             var pageCount = document.getElementById('totalPage');
             pageCount.textContent = 'of ' + viewer.pageCount;
         };
-    }
-    function change(args) {
-        if (args.checked) {
-            viewer.serviceUrl = '';
-        }
-        else {
-            viewer.serviceUrl = 'https://document.syncfusion.com/web-services/pdf-viewer/api/pdfviewer/';
-        }
-        viewer.dataBind();
-        viewer.load(viewer.documentPath, null);
     }
     function onsignatureCilck(event) {
         let signatureText = event.element.innerText;
