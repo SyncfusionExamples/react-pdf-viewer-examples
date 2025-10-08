@@ -1,0 +1,43 @@
+{
+  "name": "y6nzzzli--run",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "@syncfusion/ej2-base": "30.2.6",
+    "@syncfusion/ej2-react-base": "30.2.4",
+    "@syncfusion/ej2-pdfviewer": "30.2.7",
+    "@syncfusion/ej2-react-pdfviewer": "30.2.7",
+    "@syncfusion/ej2-buttons": "30.2.4",
+    "@syncfusion/ej2-react-buttons": "30.2.4",
+    "@syncfusion/ej2-react-charts": "30.2.7",
+    "undefined": "0.1.0",
+    "@syncfusion/ej2-lists": "30.2.4",
+    "@syncfusion/ej2-documenteditor": "30.2.7",
+    "@syncfusion/ej2-splitbuttons": "30.2.4",
+    "@syncfusion/ej2-navigations": "30.2.7",
+    "@syncfusion/ej2-react-popups": "30.2.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "react-scripts": "latest"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
