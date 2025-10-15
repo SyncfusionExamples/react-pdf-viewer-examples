@@ -108,7 +108,7 @@ function Default() {
           id="container"
           downloadStart={downloadStart}
           downloadEnd={downloadEnd}
-          serviceUrl="https://localhost:5001/pdfviewer"
+          resourceUrl="https://cdn.syncfusion.com/ej2/31.1.17/dist/ej2-pdfviewer-lib"
           documentPath="https://cdn.syncfusion.com/content/pdf/blazor-annotations.pdf"
           toolbarSettings={{
             showTooltip: true,

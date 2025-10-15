@@ -6,11 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Cloud.Storage.V1" Version="4.10.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.13" />
-    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="27.2.4" />
-	  <PackageReference Include="Azure.Storage.Blobs" Version="*" />
-	  <PackageReference Include="Syncfusion.EJ2.PdfViewer.AspNet.Core.Windows" Version="27.2.4" />
-	  <PackageReference Include="Syncfusion.Pdf.Imaging.Net.Core" Version="27.2.4" />
+  <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.13" />
+    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="*" />
+	  <PackageReference Include="Syncfusion.EJ2.PdfViewer.AspNet.Core" Version="*" />
   </ItemGroup>
 </Project>
