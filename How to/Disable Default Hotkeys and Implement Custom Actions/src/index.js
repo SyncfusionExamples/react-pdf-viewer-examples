@@ -1,7 +1,10 @@
+// Import necessary modules and styles
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import * as React from 'react';
 import { useEffect } from 'react';
+
+// Import required modules from Syncfusion PDF Viewer
 import {
   PdfViewerComponent,
   Toolbar,
@@ -20,18 +23,22 @@ import {
   Inject,
 } from '@syncfusion/ej2-react-pdfviewer';
 
+// Define the main component
 function Default() {
-  let viewer;
+  let viewer; // Reference to the PDF Viewer component
 
+  // useEffect hook to add keyboard event listeners
   useEffect(() => {
     const handleKeyDown = (e) => {
       const viewerElement = document.querySelector('.e-pv-viewer-container');
 
+      // Exit if viewer container is not found
       if (!viewerElement) return;
 
-      // Check if the active element is inside the viewer container
+      // Exit if the active element is not inside the viewer container
       if (!viewerElement.contains(document.activeElement)) return;
 
+      // Handle Ctrl + key combinations
       if (e.ctrlKey) {
         switch (e.key.toLowerCase()) {
           case 's':
@@ -65,25 +72,29 @@ function Default() {
       }
     };
 
+    // Add the keydown event listener
     document.addEventListener('keydown', handleKeyDown, true);
 
+    // Cleanup the event listener on component unmount
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
+
   return (
     <div>
       <div className="control-section">
-        {/* Render the PDF Viewer */}
+        {/* Render the Syncfusion PDF Viewer */}
         <PdfViewerComponent
           ref={(scope) => {
-            viewer = scope;
+            viewer = scope; // Assign the viewer reference
           }}
           id="container"
-          documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf"
-          resourceUrl="https://cdn.syncfusion.com/ej2/31.1.17/dist/ej2-pdfviewer-lib"
-          style={{ height: '640px' }}
+          documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf" // PDF file to load
+          resourceUrl="https://cdn.syncfusion.com/ej2/31.1.17/dist/ej2-pdfviewer-lib" // Resource URL for viewer assets
+          style={{ height: '640px' }} // Viewer height
         >
+          {/* Inject required services into the viewer */}
           <Inject
             services={[
               Toolbar,
@@ -106,7 +117,10 @@ function Default() {
     </div>
   );
 }
+
+// Export the component as default
 export default Default;
 
+// Render the component into the DOM
 const root = createRoot(document.getElementById('sample'));
 root.render(<Default />);
