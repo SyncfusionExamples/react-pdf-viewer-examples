@@ -364,7 +364,7 @@ const PdfViewer = () => {
           ref={pdfViewerRef}
           id="container"
           documentPath={window.location.origin + "/Annotations.pdf"}
-          resourceUrl="https://cdn.syncfusion.com/ej2/30.2.7/dist/ej2-pdfviewer-lib"
+          resourceUrl="https://cdn.syncfusion.com/ej2/31.2.7/dist/ej2-pdfviewer-lib"
           style={{ height: '640px' }}
           documentLoad={handleDocumentLoad}
           annotationAdd={onAnnotationAdd}
