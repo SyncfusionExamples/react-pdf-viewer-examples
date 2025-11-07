@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './PdfViewer.css';
 import { registerLicense } from '@syncfusion/ej2-base';
 import PdfViewer from './PdfViewer';
 
