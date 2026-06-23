@@ -1,10 +1,10 @@
 # React PDF Viewer Examples
 
-This repository contains a collection of examples demonstrating how to integrate and use the Syncfusion® PDF Viewer (Web) control in React applications. These samples showcase various features and configurations of the PDF Viewer, helping developers understand how to implement document viewing capabilities in their React projects.
+This repository contains a collection of examples demonstrating how to integrate and use the PDF Viewer (Web) control in React applications. These samples showcase various features and configurations of the PDF Viewer, helping developers understand how to implement document viewing capabilities in their React projects.
 
 ## 📦 Overview
 
-The Syncfusion PDF Viewer for React is a powerful component that allows users to view and interact with PDF documents directly within web applications. It supports features such as:
+The [PDF Viewer for React](https://www.syncfusion.com/pdf-viewer-sdk/react-pdf-viewer) is a powerful component that allows users to view and interact with PDF documents directly within web applications. It supports features such as:
 
 - Viewing PDF files
 - Text selection and copy
