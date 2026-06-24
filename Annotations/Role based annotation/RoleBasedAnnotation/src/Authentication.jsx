@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./index.css"; // Make sure this CSS file exists and is correctly styled
+import "./PdfViewer.css"; // Make sure this CSS file exists and is correctly styled
 
 const hostURL = "https://localhost:44310/api/Authentication";
 
