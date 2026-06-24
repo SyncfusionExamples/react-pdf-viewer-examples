@@ -1,0 +1,59 @@
+{
+  "name": "objyjnmw--run",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "awesome-typescript-loader": "3.4.1",
+    "typescript": "3.9.10",
+    "source-map-loader": "0.2.4",
+    "@syncfusion/ej2-base": "31.1.17",
+    "@syncfusion/ej2-buttons": "31.1.17",
+    "@syncfusion/ej2-splitbuttons": "31.1.17",
+    "@syncfusion/ej2-data": "31.1.17",
+    "@syncfusion/ej2-dropdowns": "31.1.17",
+    "@syncfusion/ej2-lists": "31.1.17",
+    "@syncfusion/ej2-inputs": "31.1.17",
+    "@syncfusion/ej2-navigations": "31.1.17",
+    "@syncfusion/ej2-popups": "31.1.17",
+    "@syncfusion/ej2-notifications": "31.1.17",
+    "@syncfusion/ej2-drawings": "31.1.17",
+    "@syncfusion/ej2-inplace-editor": "31.1.17",
+    "@syncfusion/ej2-calendars": "31.1.17",
+    "@syncfusion/ej2-richtexteditor": "31.1.17",
+    "@syncfusion/ej2-filemanager": "31.1.17",
+    "@syncfusion/ej2-layouts": "31.1.17",
+    "@syncfusion/ej2-grids": "31.1.17",
+    "@syncfusion/ej2-pdf-export": "31.1.17",
+    "@syncfusion/ej2-excel-export": "31.1.17",
+    "@syncfusion/ej2-compression": "31.1.17",
+    "@syncfusion/ej2-file-utils": "31.1.17",
+    "@syncfusion/ej2-pdfviewer": "31.1.17",
+    "@syncfusion/ej2-react-base": "31.1.17",
+    "@syncfusion/ej2-react-pdfviewer": "31.1.17",
+    "@syncfusion/ej2-react-buttons": "31.1.17",
+    "@syncfusion/ej2-pdf": "31.1.17"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "react-scripts": "latest"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
