@@ -1,0 +1,19 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "useGulp": false,
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "22.22.3",
+    "sdksVersions": {},
+    "version": "1.23.2",
+    "libraryName": "pdfviewer-spfx-react",
+    "libraryId": "640c4139-f44f-45fd-80ce-81dc45b85085",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "pdfviewer-spfx-react",
+    "solutionShortDescription": "pdfviewer-spfx-react description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

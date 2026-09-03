@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "pdfviewer-spfx-react-client-side-solution",
+    "id": "640c4139-f44f-45fd-80ce-81dc45b85085",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.23.2"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "pdfviewer-spfx-react description"
+      },
+      "longDescription": {
+        "default": "pdfviewer-spfx-react description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "pdfviewer-spfx-react Feature",
+        "description": "The feature that activates elements of the pdfviewer-spfx-react solution.",
+        "id": "66b3b5eb-8779-42f8-aa7f-9b77c18d1442",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/pdfviewer-spfx-react.sppkg"
+  }
+}
