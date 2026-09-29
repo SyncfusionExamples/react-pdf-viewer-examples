@@ -8,6 +8,7 @@
     "@syncfusion/ej2-react-dropdowns": "^30.1.42",
     "@syncfusion/ej2-react-inputs": "^30.1.40",
     "@syncfusion/ej2-react-navigations": "^30.1.42",
+    "@syncfusion/ej2-tailwind3-theme": "*",
     "@syncfusion/ej2-react-pdfviewer": "^30.1.42",
     "@syncfusion/ej2-react-popups": "^30.1.42",
     "@testing-library/dom": "^10.4.1",

@@ -8,6 +8,7 @@
     "@syncfusion/ej2-base": "*",
     "@syncfusion/ej2-react-base": "*",
     "@syncfusion/ej2-pdfviewer": "*",
+    "@syncfusion/ej2-tailwind3-theme": "*",
     "@syncfusion/ej2-react-pdfviewer": "*",
     "@syncfusion/ej2-buttons": "*",
     "@syncfusion/ej2-react-buttons": "*",
