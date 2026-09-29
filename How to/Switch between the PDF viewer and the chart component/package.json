@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@syncfusion/ej2-tailwind3-theme": "*",
     "@syncfusion/ej2-react-pdfviewer": "*",
     "@syncfusion/ej2-react-charts": "*",
     "@testing-library/jest-dom": "^5.16.5",

@@ -12,6 +12,7 @@
     "@syncfusion/ej2-popups": "^*",
     "@syncfusion/ej2-react-base": "*",
     "@syncfusion/ej2-react-buttons": "*",
+    "@syncfusion/ej2-tailwind3-theme": "*",
     "@syncfusion/ej2-react-pdfviewer": "*",
     "@syncfusion/ej2-react-popups": "*",
     "@syncfusion/ej2-splitbuttons": "*",

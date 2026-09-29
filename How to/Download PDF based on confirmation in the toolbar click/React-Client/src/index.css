@@ -1,3 +1,4 @@
+@import '../node_modules/@syncfusion/ej2-tailwind3-theme/styles/pdfviewer/index.css';
 #pdfviewer {
     height: 640px;
 }

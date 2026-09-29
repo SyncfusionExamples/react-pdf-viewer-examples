@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@syncfusion/ej2-react-navigations": "*",
+    "@syncfusion/ej2-tailwind3-theme": "*",
     "@syncfusion/ej2-react-pdfviewer": "*",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

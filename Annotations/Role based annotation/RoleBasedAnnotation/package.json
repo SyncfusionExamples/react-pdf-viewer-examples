@@ -5,6 +5,7 @@
   "dependencies": {
     "@syncfusion/ej2-base": "^31.2.2",
     "@syncfusion/ej2-react-dropdowns": "^31.2.3",
+    "@syncfusion/ej2-tailwind3-theme": "*",
     "@syncfusion/ej2-react-pdfviewer": "^31.2.3",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.8.0",
