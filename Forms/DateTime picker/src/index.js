@@ -6,7 +6,7 @@ import { PdfViewerComponent, Toolbar, Magnification, Navigation, LinkAnnotation,
 export function App() {
   const viewerRef = useRef(null);
 
-  const onDocumentLoad = () => {
+  const addDateField = () => {
     // Add a Date field
     viewerRef.current?.formDesignerModule.addFormField('Textbox', {
       name: 'DateField1',
@@ -29,7 +29,9 @@ export function App() {
         format: { script: 'AFDate_FormatEx("m/d/yy")' }
       }
     });
+  };
 
+  const addTimeField = () => {
     // Add a Time field
     viewerRef.current?.formDesignerModule.addFormField('Textbox', {
       name: 'TimeField1',
@@ -54,17 +56,9 @@ export function App() {
     });
   };
 
-  const addDateField = () => {
-    viewerRef.current?.formDesignerModule.setFormFieldMode('DateTime');
-  };
-
-  const addTimeField = () => {
-    viewerRef.current?.formDesignerModule.setFormFieldMode('Time');
-  };
-
   return (
     <div className='control-section'>
-      <button onClick={addDateField}>Add DateTime Picker</button>
+      <button onClick={addDateField}>Add Date Picker</button>
       <button onClick={addTimeField}>Add Time Picker</button>
       <PdfViewerComponent
         ref={viewerRef}
@@ -72,7 +66,6 @@ export function App() {
         documentPath="https://cdn.syncfusion.com/content/pdf/form-filling-document.pdf"
         resourceUrl="https://cdn.syncfusion.com/ej2/31.2.2/dist/ej2-pdfviewer-lib"
         style={{ height: '680px' }}
-        documentLoad={onDocumentLoad}
       >
         <Inject services={[Toolbar, Magnification, Navigation, Annotation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, FormFields, FormDesigner]} />
       </PdfViewerComponent>
