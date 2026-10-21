@@ -27,7 +27,6 @@ export default function App() {
           <button onClick={enableRectangleMode}>Rectangle</button>
           <button onClick={enableCircleMode}>Circle</button>
           <button onClick={enablePolygonMode}>Polygon</button>
-          <button onClick={enableCloudMode}>Cloud</button>
           <button onClick={enableFreeTextMode}>Free Text</button>
           <button onClick={enableAreaMode}>Area</button>
           <button onClick={enableLineMode}>Line</button>
@@ -58,7 +57,7 @@ export default function App() {
 
       <PdfViewerComponent
         id="container"
-        documentPath="https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf"
+        documentPath={window.location.origin + "/blank.pdf"}
         resourceUrl="https://cdn.syncfusion.com/ej2/31.2.2/dist/ej2-pdfviewer-lib"
         rectangleSettings={{
           strokeColor: '#d32f2f',
@@ -73,7 +72,7 @@ export default function App() {
           borderDashArray: [5, 5]
         }}
         freeTextSettings={{
-          fillColor: '#e8f5e9',
+          fillColor: 'red',
           borderColor: '#2e7d32',
           fontColor: '#1b5e20',
           opacity: 0.3,
@@ -93,6 +92,21 @@ export default function App() {
           strokeColor: '#f57c00',
           borderStyle: BorderStyle.Dashed,
           borderDashArray: [4, 3]
+        }}
+        polygonSettings={{
+          fillColor: '#ffa5d8',
+          strokeColor: '#ff6a00',
+          thickness: 2,
+          opacity: 0.9,
+          borderStyle: BorderStyle.Cloud,
+          cloudIntensity: 2
+        }}
+        areaSettings={{
+          fillColor: 'yellow',
+          strokeColor: 'orange',
+          opacity: 0.6,
+          borderStyle: BorderStyle.Cloud,
+          cloudIntensity: 2
         }}
         style={{ height: '650px' }}
       >
@@ -132,10 +146,6 @@ function enableCircleMode() {
 
 function enablePolygonMode() {
   getViewer().annotation.setAnnotationMode('Polygon');
-}
-
-function enableCloudMode() {
-  getViewer().annotation.setAnnotationMode('Cloud');
 }
 
 function enableFreeTextMode() {
@@ -250,24 +260,41 @@ function addDashedRadius() {
 }
 
 // --- Modify the border style of the currently selected annotation ---
-
-function updateSelectedBorder(borderStyle, extra) {
+function updateSelectedBorder(borderStyle, extra = {}) {
   const viewer = getViewer();
-  const annotation = viewer.getSelectedAnnotation?.();
+  const annotation =
+    viewer.annotationCollection[viewer.annotationCollection.length - 1];
 
-  if (annotation) {
-    viewer.annotation.editAnnotation(annotation, { borderStyle, ...extra });
+  if (!annotation) {
+    return;
   }
+
+  // Set border style
+  annotation.borderStyle = borderStyle;
+
+  // Apply additional properties dynamically
+  Object.entries(extra).forEach(([key, value]) => {
+    annotation[key] = value;
+  });
+
+  viewer.annotation.editAnnotation(annotation);
 }
 
 function applyCloudBorderToSelected() {
-  updateSelectedBorder(BorderStyle.Cloud, { cloudIntensity: 2 });
+  updateSelectedBorder(BorderStyle.Cloud, {
+    cloudIntensity: 2
+  });
 }
 
 function applyDashedBorderToSelected() {
-  updateSelectedBorder(BorderStyle.Dashed, { borderDashArray: [5, 5] });
+  updateSelectedBorder(BorderStyle.Dashed, {
+    borderDashArray: [5, 5]
+  });
 }
 
 function resetBorderOfSelected() {
-  updateSelectedBorder(BorderStyle.Solid, { borderDashArray: null, cloudIntensity: 1 });
+  updateSelectedBorder(BorderStyle.Solid, {
+    borderDashArray: null,
+    cloudIntensity: 1
+  });
 }

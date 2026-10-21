@@ -23,6 +23,7 @@ export default function App() {
         <button onClick={enableCalloutMode}>Enable Callout Mode</button>
         <button onClick={exitCalloutMode}>Exit Callout Mode</button>
         <button onClick={addCalloutProgrammatically}>Add Callout Programmatically</button>
+        <button onClick={editCalloutProgrammatically}>Edit Callout Programmatically</button>
       </div>
       <PdfViewerComponent
         id="container"
@@ -80,4 +81,24 @@ function addCalloutProgrammatically() {
     ],
     lineEndingStyle: 'Open'
   });
+}
+
+// Edit Callout Annotation programmatically
+function editCalloutProgrammatically() {
+  const viewer = document.getElementById('container').ej2_instances[0];
+  if (viewer.annotationCollection) {
+    for (var i = 0; i < viewer.annotationCollection.length; i++) {
+      var annotation = viewer.annotationCollection[i];
+      if (annotation.subject == 'Callout') {
+        annotation.bounds = { x: 300, y: 300, width: 200, height: 40, top: 300, left: 300 }
+        annotation.dynamicText = 'Callout edited'
+        annotation.author = 'Syncfusion'
+        annotation.strokeColor = 'red'
+        annotation.fillColor = 'yellow'
+        annotation.textAlign = 'Center'
+        viewer.annotation.editAnnotation(annotation);
+        break;
+      }
+    }
+  }
 }
