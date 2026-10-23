@@ -161,7 +161,7 @@ export default function App() {
    * Applies pending operations to the document after it has been loaded.
    * This handles applying initial state snapshots (annotations, form fields, page organizer).
    */
-  documentLoad = () => {
+  const documentLoad = () => {
     this.adapter.updatePendingOperations();
   };
   // ============================================================
