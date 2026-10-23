@@ -14,6 +14,7 @@ import { PdfViewerAdapter } from './pdfViewerAdapter';
 // Available user list for demo purposes
 const userList = ['RIO', 'JOHN', 'MAXY', 'SHAI', 'SRI'];
 const currentUserName = userList[Math.floor(Math.random() * userList.length)];
+//REPLACE THIS WITH SERVICE URL CURRENTLY RUNNING
 const SERVICE_URL = 'http://localhost:8081/';
 
 export default function App() {
@@ -156,7 +157,13 @@ export default function App() {
       throw error;
     }
   };
-
+  /**
+   * Applies pending operations to the document after it has been loaded.
+   * This handles applying initial state snapshots (annotations, form fields, page organizer).
+   */
+  const documentLoad = () => {
+    this.adapter.updatePendingOperations();
+  };
   // ============================================================
   // Event Handlers - Collaboration Lifecycle
   // ============================================================
@@ -192,7 +199,10 @@ export default function App() {
             // Step 2: Create and configure CollaborationClient
             const client = new CollaborationClient(adapter, {
               serviceUrl: SERVICE_URL,
+              // USE BELOW IF YOU USE NODE JS WEB SERVICE
               connectionType: 'websocket',
+              // USE BELOW IF YOU USE CORE WEB SERVICE
+              // connectionType: 'signalr',
               currentUser: currentUser,
               onUserJoined: (user) => {
                 console.log('[App] User joined collaboration:', user);
@@ -409,6 +419,7 @@ export default function App() {
           resourceUrl="https://cdn.syncfusion.com/ej2/34.1.29/dist/ej2-pdfviewer-lib"
           resourcesLoaded={handleResourcesLoaded}
           documentChanged={handleDocumentChanged}
+          documentLoad={documentLoad}
           style={{ height: '100%', width: '100%' }}
         >
           <Inject services={[
