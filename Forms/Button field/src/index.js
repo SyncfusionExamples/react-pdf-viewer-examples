@@ -201,7 +201,7 @@ export function App() {
   return (
     <div className="pdf-viewer-container">
       <div className="control-panel">
-        <h3>Button Field Showcase</h3>
+        <h3>Add button field programmatically</h3>
 
         <div className="button-group">
           <button
