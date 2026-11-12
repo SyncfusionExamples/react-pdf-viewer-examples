@@ -1,3 +1,5 @@
+@import "../node_modules/@syncfusion/ej2-tailwind3-theme/styles/pdfviewer/index.css";
+
 .pdf-viewer-container {
   margin: 30px 90px;
 }
@@ -55,7 +57,7 @@
   color: #424242;
 }
 
-.field > span {
+.field>span {
   white-space: nowrap;
 }
 
